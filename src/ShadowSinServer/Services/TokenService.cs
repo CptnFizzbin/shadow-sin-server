@@ -23,13 +23,15 @@ public class TokenService : ITokenService
     public (string Token, DateTime Expiration) GenerateToken(ApplicationUser user)
     {
         var jwtSettings = _configuration.GetSection("Jwt");
-        var secret = jwtSettings["Secret"]
+        var secret =
+            jwtSettings["Secret"]
             ?? throw new InvalidOperationException("JWT secret is not configured.");
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
         var expiration = DateTime.UtcNow.AddMinutes(
-            double.Parse(jwtSettings["ExpirationMinutes"] ?? "60"));
+            double.Parse(jwtSettings["ExpirationMinutes"] ?? "60")
+        );
 
         var claims = new[]
         {

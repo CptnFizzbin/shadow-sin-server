@@ -8,7 +8,7 @@ on:
 
 jobs:
   build-and-test:
-    name: Build & Test (.NET 8)
+    name: Build & Test (.NET 9)
     runs-on: ubuntu-latest
 
     steps:
@@ -18,10 +18,16 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: "8.0.x"
+          dotnet-version: "9.0.x"
+
+      - name: Restore tools
+        run: dotnet tool restore
 
       - name: Restore dependencies
         run: dotnet restore ShadowSinServer.slnx
+
+      - name: Check formatting
+        run: dotnet csharpier check .
 
       - name: Build
         run: dotnet build ShadowSinServer.slnx --no-restore -c Release

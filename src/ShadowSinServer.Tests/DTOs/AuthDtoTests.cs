@@ -1,40 +1,26 @@
 using ShadowSinServer.DTOs;
-using ShadowSinServer.Models;
 
-namespace ShadowSinServer.Tests;
-
-public class ApplicationUserTests
-{
-    [Fact]
-    public void ApplicationUser_CreatedAt_DefaultsToUtcNow()
-    {
-        var before = DateTime.UtcNow;
-        var user = new ApplicationUser();
-        var after = DateTime.UtcNow;
-
-        Assert.InRange(user.CreatedAt, before, after);
-    }
-}
+namespace ShadowSinServer.Tests.DTOs;
 
 public class AuthDtoTests
 {
     [Fact]
     public void RegisterRequest_HoldsAllFields()
     {
-        var req = new RegisterRequest("runner", "runner@example.com", "P@ssw0rd1");
+        var req = new RegisterRequest("runner", "runner@example.com", "P@ssw0rd1Secret");
 
         Assert.Equal("runner", req.UserName);
         Assert.Equal("runner@example.com", req.Email);
-        Assert.Equal("P@ssw0rd1", req.Password);
+        Assert.Equal("P@ssw0rd1Secret", req.Password);
     }
 
     [Fact]
     public void LoginRequest_HoldsAllFields()
     {
-        var req = new LoginRequest("runner@example.com", "P@ssw0rd1");
+        var req = new LoginRequest("runner@example.com", "P@ssw0rd1Secret");
 
         Assert.Equal("runner@example.com", req.Email);
-        Assert.Equal("P@ssw0rd1", req.Password);
+        Assert.Equal("P@ssw0rd1Secret", req.Password);
     }
 
     [Fact]
