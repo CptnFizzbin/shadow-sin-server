@@ -7,8 +7,8 @@ services:
       - "8080:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=shadowsin;Username=shadowsin;Password=changeme
-      - Jwt__Secret=CHANGE_THIS_SECRET_KEY_MUST_BE_AT_LEAST_32_CHARS
+      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=shadowsin;Username=shadowsin;Password=${POSTGRES_PASSWORD}
+      - Jwt__Secret=${JWT_SECRET}
       - Jwt__Issuer=ShadowSinServer
       - Jwt__Audience=ShadowSinServer
       - Jwt__ExpirationMinutes=60
@@ -22,7 +22,7 @@ services:
     environment:
       POSTGRES_DB: shadowsin
       POSTGRES_USER: shadowsin
-      POSTGRES_PASSWORD: changeme
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:

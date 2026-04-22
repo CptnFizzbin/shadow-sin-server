@@ -21,15 +21,16 @@ A C# ASP.NET Core 8 Web API with JWT authentication and a PostgreSQL database.
 ## Running with Docker Compose
 
 ```bash
-# Copy and customize environment values
-cp docker-compose.yml docker-compose.override.yml   # optional
+# 1. Create your .env file from the example and fill in real values
+cp .env.example .env
 
+# 2. Build and start
 docker compose up --build
 ```
 
 The API will be available at `http://localhost:8080`.
 
-> **Important:** Change the `Jwt__Secret` and `POSTGRES_PASSWORD` values before deploying to production.
+> **Important:** Set `POSTGRES_PASSWORD` and `JWT_SECRET` to strong, unique values in your `.env` file. Never commit the `.env` file to version control.
 
 ## Running locally
 
