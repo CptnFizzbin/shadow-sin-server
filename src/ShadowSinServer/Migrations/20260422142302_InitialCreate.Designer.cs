@@ -11,7 +11,7 @@ using ShadowSinServer.Data;
 namespace ShadowSinServer.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260422141148_InitialCreate")]
+    [Migration("20260422142302_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -19,7 +19,7 @@ namespace ShadowSinServer.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.5")
+                .HasAnnotation("ProductVersion", "10.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);

@@ -15,30 +15,22 @@ namespace ShadowSinServer.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "text", nullable: false),
-                    UserName = table.Column<string>(
-                        type: "character varying(256)",
-                        maxLength: 256,
-                        nullable: false
-                    ),
-                    Email = table.Column<string>(
-                        type: "character varying(256)",
-                        maxLength: 256,
-                        nullable: false
-                    ),
+                    UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
+                    Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
                     PasswordHash = table.Column<string>(type: "text", nullable: false),
-                    IsSuperuser = table.Column<bool>(type: "boolean", nullable: false),
+                    IsSuperuser = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
-                }
-            );
+                });
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(name: "Users");
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }
