@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+
+jobs:
+  build-and-test:
+    name: Build & Test (.NET 10)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Restore tools
+        run: dotnet tool restore
+
+      - name: Restore dependencies
+        run: dotnet restore ShadowSinServer.slnx
+
+      - name: Check formatting
+        run: dotnet csharpier check .
+
+      - name: Build
+        run: dotnet build ShadowSinServer.slnx --no-restore -c Release
+
+      - name: Test
+        run: dotnet test ShadowSinServer.slnx --no-build -c Release --verbosity normal
