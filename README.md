@@ -2,6 +2,8 @@
 
 A C# ASP.NET Core 8 Web API with JWT authentication and a PostgreSQL database.
 
+**Front-end client:** [CptnFizzbin/shadow-sin](https://github.com/CptnFizzbin/shadow-sin)
+
 ## Features
 
 - **User registration & login** via JWT Bearer tokens
